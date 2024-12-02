@@ -1,10 +1,15 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function VideoPaly({ videoId, title, channel }) {
-  let videoIddd = localStorage.getItem("videoId");
+  const videoID = useSelector((store) => store.videoId.id);
+  console.log(videoID);
+
+  // let videoIddd = localStorage.getItem("videoId");
   // alert(videoId);
   // console.log("videoId ===>", videoId);
   // console.log("videoIddd ===>", videoIddd);
+
   return (
     <div
       className="d-flex flex-column w-100 justify-contnet-center"
@@ -13,7 +18,7 @@ export default function VideoPaly({ videoId, title, channel }) {
       <iframe
         className="w-100 rounded-2"
         height="100%"
-        src={`https://www.youtube.com/embed/${videoId}`}
+        src={`https://www.youtube.com/embed/${videoID}`}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

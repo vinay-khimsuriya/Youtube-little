@@ -1,9 +1,13 @@
 import React, { useEffect, useState, createContext } from "react";
-
-
+import { useDispatch } from "react-redux";
+import { updateVideoId } from "./videoIdSlice";
 
 export default function VideoContainerCard({ data, onVideoSelect }) {
+  const dispatch = useDispatch();
+
   const handleVideoChange = () => {
+    dispatch(updateVideoId(data.id.videoId));
+
     onVideoSelect(
       data.id.videoId,
       data.snippet.description,

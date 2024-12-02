@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import VideoPaly from "../reUsableComponent/VideoPaly";
 import { Youtube_Queries } from "../Utility/APIConstantData";
 import VideoContainer from "./VideoContainer";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   const [selectedQuery, setSelectedQuery] = useState(Youtube_Queries[0]);
@@ -9,6 +10,10 @@ export default function Home() {
   const [title, setTitle] = useState(null);
   const [channel, setChannel] = useState(null);
   const [inputValue, setInputValue] = useState("");
+
+  // const videoId = useSelector((store) => {
+  //   store.videoId.id;
+  // });
 
   const handleChange = (event) => {
     setSelectedQuery(event.target.value);

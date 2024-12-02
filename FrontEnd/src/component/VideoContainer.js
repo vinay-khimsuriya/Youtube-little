@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState, createContext } from "react";
 import VideoContainerCard from "../Utility/VideoContainerCard";
+import { useDispatch } from "react-redux";
+import { updateVideoId } from "../Utility/videoIdSlice";
 
 export const VideoId = createContext();
 
 export default function VideoContainer({ selectedQuery, onVideoSelect }) {
   const [data, setData] = useState(null);
   // const [defaultId, setDefaultId] = useState(null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData(selectedQuery);
@@ -20,8 +24,10 @@ export default function VideoContainer({ selectedQuery, onVideoSelect }) {
       if (response && response?.data) {
         setData(response?.data?.items);
 
+        dispatch(updateVideoId(response.data.items[0].id.videoId));
+
         onVideoSelect(response.data.items[0].id.videoId);
-        console.log(response.data.items[0].id.videoId);
+        // console.log(response.data.items[0].id.videoId);
       }
     } catch (error) {
       console.log(error);
